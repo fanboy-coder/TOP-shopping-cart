@@ -1,11 +1,9 @@
+import React from "react";
 import { Link } from "react-router-dom";
-import './App.css'
 
-function App() {
-
-  return (
-    <>
-      <div className='body'>
+const NavBar = () => {
+	return (
+		<div className='body'>
 			<ul className='navbar'>
 			<li>
 				<Link to="/" className='link'>Home</Link>
@@ -18,8 +16,7 @@ function App() {
 			</li>
 			</ul>
 	  </div>
-    </>
-  )
+	)
 }
 
-export default App
+export default NavBar;

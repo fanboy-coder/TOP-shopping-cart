@@ -1,6 +1,78 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+
+/* reset */
+body,p,a,ul,li {
+	margin:0;
+	padding: 0;
+	text-decoration: none;
+}
+
+li {
+	list-style-type: none;
+}
+
+:root {
+	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+	line-height: 1.5;
+	font-weight: 400;
+  
+	color-scheme: light dark;
+	color: rgba(255, 255, 255, 0.87);
+	background-color: #242424;
+  
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-text-size-adjust: 100%;
+  }
+
+/* base styles */
+body{
+	overflow-x: hidden;
+}
+
+/* mobile styles */
+
+.navbar {
+	display: grid;
+	background-color: white;
+	font-weight: bold;
+	font-size: 1.5em;
+	margin: 0;
+	padding: 10px;
+	gap: 60px;
+	color: black;
+	align-items: center;
+	justify-content: center;
+	display: flex;
+}
+
+.grid {
+	display: grid;
+	grid-template-columns: repeat(3,1fr);
+}
+
+.link {
+	color: black;
+	font-size: 0.8em;
+}
+
+.link:hover{
+	color: grey;
+}
+
+.link:active {
+	text-decoration: underline;
+}
+
+/* tablet */
+@media screen and (min-width: 620px) {
+
+}
+
+/* desktop */
+@media screen and (min-width: 960px){
+	.link {
+		font-size: 1em;
+	}
 }
