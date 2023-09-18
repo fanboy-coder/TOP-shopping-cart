@@ -1,27 +1,29 @@
-//pages
+// react
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import App from './App.jsx'
-import './index.css'
-import Products from "./components/Products.jsx";
-import ShoppingCart from './components/ShoppingCart.jsx';
+import './App.css'
+import {
+	createBrowserRouter,
+	Route,
+	createRoutesFromElements,
+	RouterProvider
+} from "react-router-dom";
 
-const router = createBrowserRouter([
-	{
-		path: "/",
-		element: <App/>
-	},
-	{
-		path: "/products",
-		element: <Products/>,
-	},
-	{
-		path:"/shopping-cart",
-		element:<ShoppingCart/>,
-	}
-])
+// pages
+import Home from "./pages/Home";
+import Products from "./pages/Products";
+import ShoppingCart from "./pages/ShoppingCart";
+import RootLayout from "./layouts/RootLayout";
 
+const router = createBrowserRouter(
+	createRoutesFromElements(
+		<Route path="/" element={<RootLayout/>}>
+			<Route index element={<Home/>}></Route>
+			<Route path="products" element={<Products />}></Route>
+			<Route path="shopping-cart" element={<ShoppingCart/>}></Route>
+		</Route>
+	)
+)
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
