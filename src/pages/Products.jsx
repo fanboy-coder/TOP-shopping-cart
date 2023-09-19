@@ -1,4 +1,6 @@
 import React from "react";
+import AddToCartBTN from "../components/AddToCartBTN";
+import QuantityBTN from "../components/QuantityBTN";
 
 function shortenDescription(str) {
 	if(str.length > 100) {
@@ -8,22 +10,21 @@ function shortenDescription(str) {
 }
 
 const Products = ({data}) => {
-	console.log(data)
 	return (
 		<div >
 			<ul className="grid">
 				{data.map((item)=>(
 					<li key={item.id} className="item-box">
-						<div class="item-picture">
+						<div className="item-picture">
 							<img src={item.image} alt=""/>
 						</div>
 						<div clas="item-features">
 							<h2>{item.title}</h2>
 							<p className="item-description">{shortenDescription(item.description)}</p>
-							<div class="button-box">
+							<div className="button-box">
 								<h2>{item.price}€</h2>
-								<button>Quantity</button>
-								<button>Add to cart</button>
+								<QuantityBTN/>
+								<AddToCartBTN/>
 							</div>
 						</div>
 					</li>	
