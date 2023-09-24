@@ -24,7 +24,7 @@ const Products = ({data}) => {
 							<div className="button-box">
 								<h2>{item.price}€</h2>
 								<QuantityBTN/>
-								<AddToCartBTN/>
+								<AddToCartBTN item={item.title}/>
 							</div>
 						</div>
 					</li>	

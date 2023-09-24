@@ -39,7 +39,6 @@ body{
 
 /* buttons */
 .cart-button {
-  appearance: button;
   background-color: #1899D6;
   border: solid transparent;
   border-radius: 16px;
@@ -47,14 +46,13 @@ body{
   box-sizing: border-box;
   color: #FFFFFF;
   cursor: pointer;
-  display: inline-block;
-  font-size: 15px;
+  font-size: 10px;
   font-weight: 700;
   letter-spacing: .5px;
   line-height: 10px;
   margin: 0;
   outline: none;
-  overflow: visible;
+  overflow: hidden;
   text-align: center;
   text-transform: uppercase;
   touch-action: manipulation;
@@ -98,6 +96,13 @@ body{
 
 .quantity-button {
 	display: flex;
+	align-items: center;
+	padding: 0;
+	width: 100px;
+}
+
+.quantity-button button {
+	margin: 0;
 }
 
 /* mobile styles */
@@ -157,12 +162,10 @@ body{
 }
 
 .item-box {
-	display: grid;
 	margin: 20px 20px;
 	grid-column: span 3;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  	justify-content: center;
-  	align-items: center;
+	font-size: 0.8em;
 }
 
 .item-box * {
@@ -175,13 +178,15 @@ body{
 
 .button-box {
 	display: flex;
+	align-items: center;
+	width: 100%;
 	justify-content: space-between;
 }
 
 .item-picture img{
 	display: block;
 	margin: 0 auto;
-	width:30%;
+	width:40%;
 }
 
 /* tablet */
