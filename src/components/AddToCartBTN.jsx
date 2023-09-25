@@ -1,20 +1,18 @@
 import { useState } from "react"
 
-export default function AddToCartBTN({item}) {
+export default function AddToCartBTN({item,quantity}) {
 
 	const[cart,setCart] = useState([]);
 
 	const updateCart = () => {
-		// const updatedCart = cart.map((item) =>{
-		// 	return{title: item.title, quantity: quantity }
-		// })
-		// setCart(updatedCart)
-		console.log(item)
+		const updatedCart = [...cart,{item: item, quantity:quantity}];
+		console.log(updatedCart);
+		return updatedCart;
 	}
 
 	return(
 		<>
-		<button className="cart-button" onClick={() => updateCart(item)}>
+		<button className="cart-button" onClick={() => updateCart(item,quantity)}>
 			<p>Add to Cart</p>
 		</button>
 		</>

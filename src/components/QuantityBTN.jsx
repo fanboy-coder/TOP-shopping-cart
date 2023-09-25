@@ -1,19 +1,11 @@
-import { useState } from "react";
-
-export default function QuantityBTN(){
-
-	const [quantity,setQuantity] = useState(0);
+export default function QuantityBTN({onQuantityChange,quantity}){
 
 	const handleDecrease = () =>  {
-		if (quantity != 0) {
-			setQuantity(quantity-1);
-		} else {
-			return
-		}
+		onQuantityChange((prevQuantity) => (prevQuantity > 0 ? prevQuantity - 1 : prevQuantity));
 	}
 
 	const handleIncrease = () => {
-		setQuantity(quantity+1);
+		onQuantityChange((prevQuantity) => prevQuantity+1);
 	}
 
 	return(
