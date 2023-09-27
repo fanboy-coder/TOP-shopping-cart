@@ -3,8 +3,11 @@ import AddToCartBTN from "../components/AddToCartBTN";
 import QuantityBTN from "../components/QuantityBTN";
 
 const Products = ({ data }) => {
-
 	const [quantity,setQuantity] = useState(0);
+
+	const handleQuantityChange = (newQuantity) => {
+		setQuantity(newQuantity);
+	}
 
 	function shortenDescription(str) {
 		if (str.length > 100) {
@@ -27,8 +30,7 @@ const Products = ({ data }) => {
 							<div className="button-box">
 								<h2>{item.price}€</h2>
 								<QuantityBTN
-									onQuantityChange={setQuantity}
-									quantity={quantity}
+									onQuantityChange={handleQuantityChange}
 								/>
 								<AddToCartBTN
 									item={item.title}

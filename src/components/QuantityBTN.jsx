@@ -1,12 +1,20 @@
-export default function QuantityBTN({onQuantityChange,quantity}){
+import { useState } from "react";
+
+export default function QuantityBTN({onQuantityChange}){
+
+	const [quantity,setQuantity] = useState(0);
 
 	const handleDecrease = () =>  {
-		onQuantityChange((prevQuantity) => (prevQuantity > 0 ? prevQuantity - 1 : prevQuantity));
-	}
+		if (quantity > 0) {
+			setQuantity(quantity-1);
+			onQuantityChange(quantity-1);
+		}
+	};
 
 	const handleIncrease = () => {
-		onQuantityChange((prevQuantity) => prevQuantity+1);
-	}
+		setQuantity(quantity+1);
+		onQuantityChange(quantity+1);
+	};
 
 	return(
 		<div className="quantity-button">
@@ -16,5 +24,5 @@ export default function QuantityBTN({onQuantityChange,quantity}){
 			</div>
 			<button type="button" onClick={handleIncrease}>+</button>
 		</div>
-	)
+	);
 }
