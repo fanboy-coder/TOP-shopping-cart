@@ -3,6 +3,7 @@ import { CartContext } from "../Contexts/CartContext";
 
 const ShoppingCart = () => {
 	const[cart,setCart] = useContext(CartContext);
+	console.log(cart);
 
 	return (
 		<div>

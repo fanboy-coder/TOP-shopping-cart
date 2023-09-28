@@ -40,10 +40,8 @@ function App() {
 		createRoutesFromElements(
 			<Route path="/" element={<RootLayout />}>
 				<Route index element={<Home />} />
-				<CartContext.Provider value={[ cart, setCart ]}>
 					<Route path="products" element={<Products data={data} />} />
 					<Route path="shopping-cart" element={<ShoppingCart />} />
-				</CartContext.Provider>
 				<Route path="*" element={<NotFound />} />
 			</Route>
 		)
@@ -51,7 +49,9 @@ function App() {
 
 	return (
 		<React.StrictMode>
+			<CartContext.Provider value={[ cart, setCart ]}>
 			<RouterProvider router={router} />
+			</CartContext.Provider>
 		</React.StrictMode>
 	);
 }
