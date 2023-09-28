@@ -1,12 +1,18 @@
-import React,{useState} from "react";
+import React,{useState, useContext} from "react";
 import AddToCartBTN from "../components/AddToCartBTN";
 import QuantityBTN from "../components/QuantityBTN";
+import { CartContext } from "../Contexts/CartContext";
 
 const Products = ({ data }) => {
 	const [quantity,setQuantity] = useState(0);
+	const[cart,setCart] = useContext(CartContext);
 
 	const handleQuantityChange = (newQuantity) => {
 		setQuantity(newQuantity);
+	}
+
+	const handleCartChange = (newCart) => {
+		setCart((prevCart)=>[...prevCart,...newCart]);
 	}
 
 	function shortenDescription(str) {
@@ -35,6 +41,7 @@ const Products = ({ data }) => {
 								<AddToCartBTN
 									item={item.title}
 									quantity={quantity}
+									onCartChange={handleCartChange}
 								/>
 							</div>
 						</div>

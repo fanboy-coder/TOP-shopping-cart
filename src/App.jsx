@@ -1,10 +1,11 @@
 // native components
 import React, { useEffect, useState } from 'react';
+import { CartContext } from "./Contexts/CartContext";
 import {
-  createBrowserRouter,
-  Route,
-  createRoutesFromElements,
-  RouterProvider
+	createBrowserRouter,
+	Route,
+	createRoutesFromElements,
+	RouterProvider
 } from "react-router-dom";
 
 // pages
@@ -16,42 +17,43 @@ import NotFound from './pages/NotFound';
 
 // application
 function App() {
-  // State initialization and useEffect should be inside the component
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+	// State initialization and useEffect should be inside the component
+	const [data, setData] = useState(null);
+	const [loading, setLoading] = useState(true);
+	const [error, setError] = useState(null);
+	const [cart, setCart] = useState([]);
 
-  useEffect(() => {
-    fetch('https://fakestoreapi.com/products?limit=12')
-      .then(res => res.json())
-      .then(json => {
-        setData(json);
-        setLoading(false);
-      })
-      .catch(err => {
-        setError(err);
-        setLoading(false);
-      });
-  }, []);
+	useEffect(() => {
+		fetch('https://fakestoreapi.com/products?limit=12')
+			.then(res => res.json())
+			.then(json => {
+				setData(json);
+				setLoading(false);
+			})
+			.catch(err => {
+				setError(err);
+				setLoading(false);
+			});
+	}, []);
 
-  console.log(data);
+	const router = createBrowserRouter(
+		createRoutesFromElements(
+			<Route path="/" element={<RootLayout />}>
+				<Route index element={<Home />} />
+				<CartContext.Provider value={[ cart, setCart ]}>
+					<Route path="products" element={<Products data={data} />} />
+					<Route path="shopping-cart" element={<ShoppingCart />} />
+				</CartContext.Provider>
+				<Route path="*" element={<NotFound />} />
+			</Route>
+		)
+	);
 
-  const router = createBrowserRouter(
-    createRoutesFromElements(
-      <Route path="/" element={<RootLayout />}>
-        <Route index element={<Home />} />
-        <Route path="products" element={<Products data={data}/>} />
-        <Route path="shopping-cart" element={<ShoppingCart />} />
-        <Route path="*" element={<NotFound />} />
-      </Route>
-    )
-  );
-
-  return (
-    <React.StrictMode>
-      <RouterProvider router={router}/>
-    </React.StrictMode>
-  );
+	return (
+		<React.StrictMode>
+			<RouterProvider router={router} />
+		</React.StrictMode>
+	);
 }
 
 export default App;
