@@ -1,12 +1,12 @@
 import { useState } from "react"
 
-export default function AddToCartBTN({item,quantity,onCartChange}) {
+export default function AddToCartBTN({title,id,image,price,quantity,onCartChange}) {
 
 	const[localCart,setLocalCart] = useState([]);
 
 	const updateCart = () => {
 		if(quantity >0) {
-			const itemCheck = localCart.findIndex(cartItem => cartItem.item === item);
+			const itemCheck = localCart.findIndex(cartItem => cartItem.title === title);
 
 			if(itemCheck !== -1) {
 				const updatedCart = [...localCart];
@@ -14,7 +14,7 @@ export default function AddToCartBTN({item,quantity,onCartChange}) {
 				setLocalCart(updatedCart);
 				onCartChange(updatedCart);
 			} else {
-				const updatedCart = [...localCart,{item: item, quantity:quantity}];
+				const updatedCart = [...localCart,{id: id, title: title, image:image, price:price,quantity:quantity}];
 				setLocalCart(updatedCart);
 				onCartChange(updatedCart);
 			}
@@ -24,7 +24,7 @@ export default function AddToCartBTN({item,quantity,onCartChange}) {
 	return(
 		<>
 		<button className="cart-button" onClick={() => {
-			updateCart(item,quantity);
+			updateCart(title,quantity);
 			}}>
 			<p>Add to Cart</p>
 		</button>

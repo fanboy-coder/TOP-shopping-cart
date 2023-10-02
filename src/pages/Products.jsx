@@ -7,12 +7,21 @@ const Products = ({ data }) => {
 	const [quantity,setQuantity] = useState(0);
 	const[cart,setCart] = useContext(CartContext);
 
+
 	const handleQuantityChange = (newQuantity) => {
 		setQuantity(newQuantity);
 	}
 
 	const handleCartChange = (newCart) => {
-		setCart((prevCart)=>[...prevCart,...newCart]);
+		console.log(newCart)
+		const itemCheck = cart.findIndex(cartItem => cartItem.title === title);
+		if(itemCheck !== -1) {
+			const updatedCart = [...newCart];
+			updatedCart[itemCheck].quantity += quantity;
+			setCart(updatedCart)
+		} else {
+			setCart([...cart,newCart]);
+		}
 	}
 
 	function shortenDescription(str) {
@@ -39,7 +48,10 @@ const Products = ({ data }) => {
 									onQuantityChange={handleQuantityChange}
 								/>
 								<AddToCartBTN
-									item={item.title}
+									title={item.title}
+									id={item.id}
+									image={item.image}
+									price={item.price}
 									quantity={quantity}
 									onCartChange={handleCartChange}
 								/>
