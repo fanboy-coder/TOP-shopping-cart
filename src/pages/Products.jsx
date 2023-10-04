@@ -1,26 +1,30 @@
-import React,{useState, useContext} from "react";
-import AddToCartBTN from "../components/AddToCartBTN";
+import React, { useState, useContext } from "react";
 import QuantityBTN from "../components/QuantityBTN";
 import { CartContext } from "../Contexts/CartContext";
 
 const Products = ({ data }) => {
-	const [quantity,setQuantity] = useState(0);
-	const[cart,setCart] = useContext(CartContext);
-
+	const [quantity, setQuantity] = useState(0);
+	const [cart, setCart] = useContext(CartContext);
 
 	const handleQuantityChange = (newQuantity) => {
 		setQuantity(newQuantity);
 	}
 
-	const handleCartChange = (newCart) => {
-		console.log(newCart)
-		const itemCheck = cart.findIndex(cartItem => cartItem.title === title);
-		if(itemCheck !== -1) {
-			const updatedCart = [...newCart];
-			updatedCart[itemCheck].quantity += quantity;
-			setCart(updatedCart)
-		} else {
-			setCart([...cart,newCart]);
+	const handleCartChange = (item) => {
+
+		const { id, title, image, price } = item;
+
+		if (quantity > 0) {
+			const itemCheck = cart.findIndex(cartItem => cartItem.title === title);
+
+			if (itemCheck !== -1) {
+				const updatedCart = [...cart];
+				updatedCart[itemCheck].quantity += quantity;
+				setCart(updatedCart);
+			} else {
+				const updatedCart = [...cart, { id, title, image, price, quantity: quantity }];
+				setCart(updatedCart);
+			}
 		}
 	}
 
@@ -47,14 +51,11 @@ const Products = ({ data }) => {
 								<QuantityBTN
 									onQuantityChange={handleQuantityChange}
 								/>
-								<AddToCartBTN
-									title={item.title}
-									id={item.id}
-									image={item.image}
-									price={item.price}
-									quantity={quantity}
-									onCartChange={handleCartChange}
-								/>
+								<button className="cart-button" onClick={() => {
+									handleCartChange(item);
+								}}>
+									<p>Add to Cart</p>
+								</button>
 							</div>
 						</div>
 					</li>

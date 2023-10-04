@@ -1,7 +1,6 @@
 import { useState } from "react";
 
 export default function QuantityBTN({onQuantityChange}){
-
 	const [quantity,setQuantity] = useState(0);
 
 	const handleDecrease = () =>  {
