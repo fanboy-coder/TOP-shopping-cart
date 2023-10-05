@@ -43,7 +43,7 @@ const Products = ({ data }) => {
 						<div className="item-picture">
 							<img src={item.image} alt="" />
 						</div>
-						<div clas="item-features">
+						<div className="item-features">
 							<h2>{item.title}</h2>
 							<p className="item-description">{shortenDescription(item.description)}</p>
 							<div className="button-box">

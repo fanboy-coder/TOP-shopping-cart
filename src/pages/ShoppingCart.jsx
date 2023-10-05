@@ -39,7 +39,7 @@ const ShoppingCart = () => {
 			</div>
 			<ul className="order-grid">
 				{cart.map((item) => (
-					<li key={item.id} className="item-box cart">
+					<li key={item.id} className="cart-box">
 						<div className="item-picture">
 							<img src={item.image} alt="" />
 						</div>
