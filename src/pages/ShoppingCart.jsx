@@ -40,15 +40,13 @@ const ShoppingCart = () => {
 			<ul className="order-grid">
 				{cart.map((item) => (
 					<li key={item.id} className="cart-box">
-						<div className="item-picture">
-							<img src={item.image} alt="" />
+						<div className="image-container">
+							<img className="item-picture" src={item.image} alt="" />
 						</div>
 						<div className="item-info">
 							<div className="top-level-info">
 								<div className="item-title">{item.title}</div>
-								<div>
-									<button className="close-button" onClick={() => handleDelete(item.title)}>X</button>
-								</div>
+								<button className="close-button" onClick={() => handleDelete(item.title)}>X</button>
 							</div>
 							<div className="low-level-info">
 								<p>Quantity: </p>
@@ -68,6 +66,7 @@ const ShoppingCart = () => {
 			</ul>
 			<div className="page-title">
 				<h2>Cart total: {total}</h2>
+				<button className="cart-button checkout-button">Proceed to checkout</button>
 			</div>
 		</div>
 	)
